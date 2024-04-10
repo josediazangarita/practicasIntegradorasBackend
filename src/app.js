@@ -11,7 +11,7 @@ import mongoose from 'mongoose';
 const app = express();
 
 //MongoDB connect
-const uri = "mongodb+srv://<user>:<password>@cluster0.usycu2f.mongodb.net/<database>?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://josediazangarita:<Amanemisa_7474>@cluster0.abjsbjo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 mongoose.connect(uri);
 
 //Handlebars Config
