@@ -3,7 +3,7 @@ import handlebars from 'express-handlebars';
 import productRouter from './routes/productRouter.js';
 import cartRouter from './routes/cartRouter.js';
 import viewsRouter from './routes/viewsRouter.js';
-import __dirname from './utils/constantsUtil.js';
+import __dirname from './utils/constantsUtils.js';
 import { Server } from 'socket.io';
 import websocket from './websocket.js';
 import mongoose from 'mongoose';
