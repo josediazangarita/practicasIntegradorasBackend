@@ -9,10 +9,7 @@ import websocket from './websocket.js';
 import mongoose from 'mongoose';
 
 const app = express();
-
-//MongoDB connect
-const uri = "mongodb+srv://josediazangarita:<josediazangarita>@cluster0.abjsbjo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-mongoose.connect(uri);
+console.log('CONECTAAAADOOOOOOOO');
 
 //Handlebars Config
 app.engine('handlebars', handlebars.engine());
@@ -37,3 +34,10 @@ const httpServer = app.listen(PORT, () => {
 const io = new Server(httpServer);
 
 websocket(io);
+
+
+
+//MongoDB connect
+const uri = "mongodb+srv://jgda:jgda@cluster0.abjsbjo.mongodb.net/Ecommerce?retryWrites=true&w=majority&appName=Cluster0";
+mongoose.connect(uri).then(() => console.log('Conectado a MongoDB Atlas'))
+    .catch(err => console.error('Error al conectar a MongoDB Atlas:', err));
