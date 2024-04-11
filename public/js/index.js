@@ -55,3 +55,4 @@ function cleanForm() {
     $('#stock').value = '';
     $('#category').value = '';
 }
+

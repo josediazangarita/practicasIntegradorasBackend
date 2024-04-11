@@ -9,7 +9,6 @@ import websocket from './websocket.js';
 import mongoose from 'mongoose';
 
 const app = express();
-console.log('CONECTAAAADOOOOOOOO');
 
 //Handlebars Config
 app.engine('handlebars', handlebars.engine());
@@ -25,6 +24,7 @@ app.use(express.static('public'));
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
 app.use('/products', viewsRouter);
+
 
 const PORT = 8080;
 const httpServer = app.listen(PORT, () => {
