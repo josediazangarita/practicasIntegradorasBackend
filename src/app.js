@@ -8,36 +8,43 @@ import { Server } from 'socket.io';
 import websocket from './websocket.js';
 import mongoose from 'mongoose';
 
+// Se crea una instancia de express
 const app = express();
 
-//Handlebars Config
-app.engine('handlebars', handlebars.engine());
-app.set('views', __dirname + '/../views');
-app.set('view engine', 'handlebars');
+// Se establece el puerto
+const PORT = process.env.PORT || 9090;
 
-//Middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
-
-//Routers
-app.use('/api/products', productRouter);
-app.use('/api/carts', cartRouter);
-app.use('/products', viewsRouter);
-
-
-const PORT = 8080;
+// Servidor HTTP
 const httpServer = app.listen(PORT, () => {
-    console.log(`Start server in PORT ${PORT}`);
+    console.log(`Servidor iniciado en el puerto ${PORT}`);
 });
 
+// Servidor de sockets
 const io = new Server(httpServer);
 
+// Inicializamos el motor de plantillas Handlebars
+app.engine("handlebars", handlebars.engine());
+app.set("views", `${__dirname}/../views`);
+app.set("view engine", "handlebars");
+
+// Establecemos el servidor estático de archivos
+// Asegúrate de que esta ruta es correcta respecto a la estructura de tu proyecto
+app.use(express.static(`${__dirname}/../../public`));
+
+// Middleware para parsear JSON y URL-encoded
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Rutas
+app.use('/', viewsRouter);
+app.use('/api/products', productRouter);
+app.use('/api/carts', cartRouter);
+
+// Inicialización de WebSocket
 websocket(io);
 
-
-
-//MongoDB connect
+// Conexión a MongoDB
 const uri = "mongodb+srv://jgda:jgda@cluster0.abjsbjo.mongodb.net/Ecommerce?retryWrites=true&w=majority&appName=Cluster0";
-mongoose.connect(uri).then(() => console.log('Conectado a MongoDB Atlas'))
+mongoose.connect(uri)
+    .then(() => console.log('Conectado a MongoDB Atlas'))
     .catch(err => console.error('Error al conectar a MongoDB Atlas:', err));

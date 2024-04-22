@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         'index',
         {
             title: 'Productos',
-            style: 'index.css',
+            style: 'style.css',
             products: await ProductService.getAllProducts()
         }
     )
@@ -22,7 +22,7 @@ router.get('/realtimeproducts', async (req, res) => {
         'realTimeProducts',
         {
             title: 'Productos',
-            style: 'index.css',
+            style: 'style.css',
             products: await ProductService.getAllProducts()
         }
     )
